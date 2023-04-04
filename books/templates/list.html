@@ -1,3 +1,5 @@
+{% load humanize %}
+
 <html>
     <head>
         <title>My first Django</title>
@@ -10,7 +12,7 @@
         {% endif %}
 
         <main>
-            <h1>{{ books.count }} book(s)</h1>
+            <h1>{{ books.count|apnumber|title }} book{{ books.count|pluralize}}</h1>
             {% for book in books %}
                 <h2>{{ book.title }} by {{ book.list_authors }}</h2>
                 {% if book.is_favourite %}
