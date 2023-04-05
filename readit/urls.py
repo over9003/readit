@@ -18,10 +18,13 @@ import debug_toolbar
 from django.urls import re_path, path, include
 from django.contrib import admin
 
-from books.views import list_books
+from books.views import AuthorDetail, AuthorList, BookDetail, list_books
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^$', list_books, name="books"),
     path('__debug__/', include('debug_toolbar.urls')),
+    re_path(r'^authors/$', AuthorList.as_view(), name='authors'),
+    re_path(r'^books/(?P<pk>[-\w]+)/$', BookDetail.as_view(), name='book-detail'),
+    re_path(r'^authors/(?P<pk>[-\w]+)/$', AuthorDetail.as_view(), name='author-detail'),
 ]
